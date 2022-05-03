@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_MSG</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Message</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MSG</CLSNAME>
+     <CMPNAME>AS_ABORTION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return a copy of the current message with type A</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MSG</CLSNAME>
+     <CMPNAME>AS_BEHAVIOR_MESSAGE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return a copy of the current message as behavior msg</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MSG</CLSNAME>
+     <CMPNAME>AS_ERROR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return a copy of the current message with type E</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MSG</CLSNAME>
+     <CMPNAME>AS_EXIT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return a copy of the current message with type X</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MSG</CLSNAME>
+     <CMPNAME>AS_INFORMATION</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return a copy of the current message with type I</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MSG</CLSNAME>
+     <CMPNAME>AS_SUCCESS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return a copy of the current message with type S</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MSG</CLSNAME>
+     <CMPNAME>AS_WARNING</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return a copy of the current message with type W</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MSG</CLSNAME>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create a T100 message</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
