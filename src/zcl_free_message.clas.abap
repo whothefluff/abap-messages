@@ -14,7 +14,7 @@ class zcl_free_message definition
     methods constructor
               importing
                 i_text type string
-                i_type like sy-msgty default zcl_message=>valid_type-information.
+                i_type type zcl_message=>valid_type default zcl_message=>type-information.
 
 endclass.
 class zcl_free_message implementation.
@@ -22,10 +22,10 @@ class zcl_free_message implementation.
   method constructor.
 
     types: begin of free_text_as_t100_message,
-             part1 like zcl_message=>var1,
-             part2 like zcl_message=>var2,
-             part3 like zcl_message=>var3,
-             part4 like zcl_message=>var4,
+             part1 like if_t100_dyn_msg=>msgv1,
+             part2 like if_t100_dyn_msg=>msgv2,
+             part3 like if_t100_dyn_msg=>msgv3,
+             part4 like if_t100_dyn_msg=>msgv4,
            end of free_text_as_t100_message.
 
     data(free_text_as_t100_message) = conv free_text_as_t100_message( i_text ).
@@ -41,4 +41,3 @@ class zcl_free_message implementation.
   endmethod.
 
 endclass.
-

@@ -16,11 +16,11 @@ class zcl_text_symbol_message definition
     methods constructor
               importing
                 i_text_symbol type zcl_text_symbol_message=>t_value
-                i_type like sy-msgty default zcl_message=>valid_type-information
-                i_placeholder1 type sy-msgv1 optional
-                i_placeholder2 type sy-msgv2 optional
-                i_placeholder3 type sy-msgv3 optional
-                i_placeholder4 type sy-msgv4 optional.
+                i_type type zcl_message=>valid_type default zcl_message=>type-information
+                i_placeholder1 like if_t100_dyn_msg=>msgv1 optional
+                i_placeholder2 like if_t100_dyn_msg=>msgv2 optional
+                i_placeholder3 like if_t100_dyn_msg=>msgv3 optional
+                i_placeholder4 like if_t100_dyn_msg=>msgv4 optional.
 
 endclass.
 class zcl_text_symbol_message implementation.
@@ -41,4 +41,3 @@ class zcl_text_symbol_message implementation.
   endmethod.
 
 endclass.
-

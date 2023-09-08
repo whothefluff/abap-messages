@@ -17,7 +17,14 @@ class zcl_sy_message implementation.
 
     super->constructor( i_id = sy-msgid
                         i_number = sy-msgno
-                        i_type = sy-msgty
+                        i_type = switch #( sy-msgty
+                                           when 'E' then type-error
+                                           when 'I' then type-information
+                                           when 'A' then type-abortion
+                                           when 'W' then type-warning
+                                           when 'X' then type-exit
+                                           when 'S' then type-success
+                                           else throw cx_sy_message_illegal_text( ) )
                         i_var1 = sy-msgv1
                         i_var2 = sy-msgv2
                         i_var3 = sy-msgv3
