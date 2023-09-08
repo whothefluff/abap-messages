@@ -7,7 +7,7 @@ class zcl_free_message definition
 
   public section.
 
-    "! <p class="shorttext synchronized" lang="EN">Create a message ID '00' TYPE <em>i_type</em> NUMBER '001'</p>
+    "! <p class="shorttext synchronized" lang="EN">Creates a message ID '00' TYPE <em>i_type</em> NUMBER '001'</p>
     "!
     "! @parameter i_text | <p class="shorttext synchronized" lang="EN"></p>
     "! @parameter i_type | <p class="shorttext synchronized" lang="EN"></p>

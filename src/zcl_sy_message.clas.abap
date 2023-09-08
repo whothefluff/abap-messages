@@ -7,7 +7,7 @@ class zcl_sy_message definition
 
   public section.
 
-    "! <p class="shorttext synchronized" lang="EN">Create msg. with SY MSGID, MSGTY, MSGNO, and MSGV1 to MSGV4</p>
+    "! <p class="shorttext synchronized" lang="EN">Creates msg. with SY MSGID, MSGTY, MSGNO, and MSGV1 to MSGV4</p>
     methods constructor.
 
 endclass.

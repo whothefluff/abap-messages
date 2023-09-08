@@ -1,4 +1,4 @@
-"! <p class="shorttext synchronized" lang="EN">Message factory</p>
+"! <p class="shorttext synchronized" lang="EN">{@link ZCL_MESSAGE} factory</p>
 class zcl_message_factory definition
                           public
                           create public.
@@ -47,15 +47,16 @@ class zcl_message_factory definition
 
     "! <p class="shorttext synchronized" lang="EN">Returns a new message from an exception message</p>
     "!
-    "! @parameter i_exception | <p class="shorttext synchronized" lang="EN"></p>
-    "! @parameter i_type | <p class="shorttext synchronized" lang="EN"></p>
+    "! @parameter i_exception | <p class="shorttext synchronized" lang="EN">Exception with {@link IF_T100_MESSAGE} message</p>
     "! @parameter r_error_message | <p class="shorttext synchronized" lang="EN"></p>
+    "! @raising cx_sy_message_illegal_text | <p class="shorttext synchronized" lang="EN">Provided exc. does not implement {@link IF_T100_MESSAGE}</p>
     methods from_exception
               importing
                 i_exception type ref to cx_root
-                i_type type sy-msgty default zcl_message=>valid_type-error
               returning
-                value(r_error_message) type ref to if_t100_message.
+                value(r_error_message) type ref to if_t100_message
+              raising
+                cx_sy_message_illegal_text.
 
     "! <p class="shorttext synchronized" lang="EN">Returns a new message from an existing message</p>
     "!
@@ -105,29 +106,30 @@ class zcl_message_factory implementation.
   endmethod.
   method from_text_symbol.
 
-    r_text_symbol_message = me->from_string( replace( val = replace( val = replace( val = replace( val = i_text_symbol
-                                                                                                   sub = '&1'
-                                                                                                   with = i_placeholder1 )
-                                                                                    sub = '&2'
-                                                                                    with = i_placeholder2 )
-                                                                     sub = '&3'
-                                                                     with = i_placeholder3 )
-                                                      sub = '&4'
-                                                      with = i_placeholder4 ) ).
+    r_text_symbol_message = me->from_string( i_free_text = replace( val = replace( val = replace( val = replace( val = i_text_symbol
+                                                                                                                 sub = '&1'
+                                                                                                                 with = i_placeholder1 )
+                                                                                                  sub = '&2'
+                                                                                                  with = i_placeholder2 )
+                                                                                   sub = '&3'
+                                                                                   with = i_placeholder3 )
+                                                                    sub = '&4'
+                                                                    with = i_placeholder4 ) 
+                                             i_type = i_type ).
 
   endmethod.
   method from_exception.
 
-    i_exception->if_message~get_text( ). "copy data into sy structure
+    cl_message_helper=>set_msg_vars_for_if_t100_msg( cast #( i_exception ) ).
 
-    sy-msgty = i_type.
+    sy-msgty = 'E'.
 
     r_error_message = me->from_system_message( ).
 
   endmethod.
   method clone.
 
-    i_message->if_message~get_text( ). "copy data into sy structure
+    cl_message_helper=>set_msg_vars_for_if_t100_msg( i_message ).
 
     sy-msgty = cond #( when i_new_type is supplied
                        then i_new_type

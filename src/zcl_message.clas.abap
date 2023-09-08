@@ -16,6 +16,7 @@ class zcl_message definition
                  information type sy-msgty value 'I',
                  warning type sy-msgty value 'W',
                  exit type sy-msgty value 'X',
+                 success type sy-msgty value 'S',
                end of valid_type.
 
     data var1 type sy-msgv1 read-only.
@@ -26,43 +27,58 @@ class zcl_message definition
 
     data var4 type sy-msgv4 read-only.
 
+    "! <p class="shorttext synchronized" lang="EN">Used for {@link .METH:send} and {@link .METH:send_like}</p>
     data type type sy-msgty read-only.
 
-  "! <p class="shorttext synchronized" lang="EN">Create a T100 message</p>
-  "!
-  "! @parameter i_id | <p class="shorttext synchronized" lang="EN"></p>
-  "! @parameter i_number | <p class="shorttext synchronized" lang="EN"></p>
-  "! @parameter i_type | <p class="shorttext synchronized" lang="EN"></p>
-  "! @parameter i_var1 | <p class="shorttext synchronized" lang="EN"></p>
-  "! @parameter i_var2 | <p class="shorttext synchronized" lang="EN"></p>
-  "! @parameter i_var3 | <p class="shorttext synchronized" lang="EN"></p>
-  "! @parameter i_var4 | <p class="shorttext synchronized" lang="EN"></p>
-  methods constructor
-            importing
-              i_id like if_t100_message=>t100key-msgid
-              i_number like if_t100_message=>t100key-msgno
-              i_type like sy-msgty
-              i_var1 like sy-msgv1 optional
-              i_var2 like sy-msgv2 optional
-              i_var3 like sy-msgv3 optional
-              i_var4 like sy-msgv4 optional.
+    "! <p class="shorttext synchronized" lang="EN">Creates a T100 message</p>
+    "!
+    "! @parameter i_id | <p class="shorttext synchronized" lang="EN"></p>
+    "! @parameter i_number | <p class="shorttext synchronized" lang="EN"></p>
+    "! @parameter i_type | <p class="shorttext synchronized" lang="EN">Used for {@link .METH:send} and {@link .METH:send_like}</p>
+    "! @parameter i_var1 | <p class="shorttext synchronized" lang="EN"></p>
+    "! @parameter i_var2 | <p class="shorttext synchronized" lang="EN"></p>
+    "! @parameter i_var3 | <p class="shorttext synchronized" lang="EN"></p>
+    "! @parameter i_var4 | <p class="shorttext synchronized" lang="EN"></p>
+    methods constructor
+              importing
+                i_id like if_t100_message=>t100key-msgid
+                i_number like if_t100_message=>t100key-msgno
+                i_type like sy-msgty
+                i_var1 like sy-msgv1 optional
+                i_var2 like sy-msgv2 optional
+                i_var3 like sy-msgv3 optional
+                i_var4 like sy-msgv4 optional.
 
-  "! <p class="shorttext synchronized" lang="EN">Copies message information to sy structure</p>
-  "!
-  "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
-  methods load_into_system_fields
-            returning
-              value(r_self) type ref to if_t100_message.
+    "! <p class="shorttext synchronized" lang="EN">Sends message</p>
+    "!
+    "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
+    methods send
+              returning
+                value(r_self) type ref to if_t100_message.
 
-  "! <p class="shorttext synchronized" lang="EN">Sends message</p>
-  "!
-  "! @parameter i_display_like | <p class="shorttext synchronized" lang="EN"></p>
-  "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
-  methods send
-            importing
-              i_display_like type sy-msgty optional
-            returning
-              value(r_self) type ref to if_t100_message.
+    "! <p class="shorttext synchronized" lang="EN">Sends message and displays it like a specific type</p>
+    "!
+    "! @parameter i_display_like | <p class="shorttext synchronized" lang="EN"></p>
+    "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
+    methods send_like
+              importing
+                i_type type sy-msgty
+              returning
+                value(r_self) type ref to if_t100_message.
+
+    "! <p class="shorttext synchronized" lang="EN">Sends message that displays at the end of the process</p>
+    "!
+    "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
+    methods display
+              returning
+                value(r_self) type ref to if_t100_message.
+
+    "! <p class="shorttext synchronized" lang="EN">Sends message that displays before continuing the process</p>
+    "!
+    "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
+    methods display_immediately
+              returning
+                value(r_self) type ref to if_t100_message.
 
 endclass.
 class zcl_message implementation.
@@ -98,24 +114,24 @@ class zcl_message implementation.
     result = cl_message_helper=>get_text_for_message( me ).
 
   endmethod.
-  method load_into_system_fields.
-
-    me->get_text( ).
-
-    r_self = me.
-
-  endmethod.
   method send.
 
-    if i_display_like is supplied.
+    message me type me->type.
 
-      message me type me->type display like i_display_like.
+  endmethod.
+  method send_like.
 
-    else.
+    message me type me->type display like i_type.
 
-      message me type me->type.
+  endmethod.
+  method display.
 
-    endif.
+    message me type 'S' display like me->type.
+
+  endmethod.
+  method display_immediately.
+
+    message me type 'I' display like me->type.
 
   endmethod.
 
