@@ -5,17 +5,15 @@ class zcl_message definition
 
   public section.
 
-    interfaces: if_t100_dyn_msg.
+    interfaces: if_abap_behv_message.
 
     aliases: get_longtext for if_message~get_longtext,
              get_text for if_message~get_text.
 
     types: begin of enum valid_type structure type,
-             abortion,
              error,
              information,
              warning,
-             exit,
              success,
            end of enum valid_type structure type.
 
@@ -43,7 +41,7 @@ class zcl_message definition
     "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
     methods send
               returning
-                value(r_self) type ref to if_t100_dyn_msg.
+                value(r_self) type ref to if_abap_behv_message.
 
     "! <p class="shorttext synchronized" lang="EN">Sends message and displays it like a specific type</p>
     "!
@@ -53,21 +51,21 @@ class zcl_message definition
               importing
                 i_type type zcl_message=>valid_type
               returning
-                value(r_self) type ref to if_t100_dyn_msg.
+                value(r_self) type ref to if_abap_behv_message.
 
     "! <p class="shorttext synchronized" lang="EN">Sends message that displays at the end of the process</p>
     "!
     "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
     methods display
               returning
-                value(r_self) type ref to if_t100_dyn_msg.
+                value(r_self) type ref to if_abap_behv_message.
 
     "! <p class="shorttext synchronized" lang="EN">Sends message that displays before continuing the process</p>
     "!
     "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
     methods display_immediately
               returning
-                value(r_self) type ref to if_t100_dyn_msg.
+                value(r_self) type ref to if_abap_behv_message.
 
 endclass.
 class zcl_message implementation.
@@ -85,9 +83,7 @@ class zcl_message implementation.
     me->if_t100_dyn_msg~msgty = switch #( i_type
                                           when type-error then 'E'
                                           when type-information then 'I'
-                                          when type-abortion then 'A'
                                           when type-warning then 'W'
-                                          when type-exit then 'X'
                                           when type-success then 'S' ).
 
     me->if_t100_message~t100key = value #( msgid = i_id
@@ -96,6 +92,12 @@ class zcl_message implementation.
                                            attr2 = 'IF_T100_DYN_MSG~MSGV2'
                                            attr3 = 'IF_T100_DYN_MSG~MSGV3'
                                            attr4 = 'IF_T100_DYN_MSG~MSGV4' ).
+
+    me->if_abap_behv_message~m_severity = switch #( i_type
+                                                    when type-error then if_abap_behv_message=>severity-error
+                                                    when type-information then if_abap_behv_message=>severity-information
+                                                    when type-warning then if_abap_behv_message=>severity-warning
+                                                    when type-success then if_abap_behv_message=>severity-success ).
 
   endmethod.
   method if_message~get_longtext.

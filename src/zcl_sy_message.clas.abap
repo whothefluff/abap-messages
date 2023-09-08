@@ -20,9 +20,7 @@ class zcl_sy_message implementation.
                         i_type = switch #( sy-msgty
                                            when 'E' then type-error
                                            when 'I' then type-information
-                                           when 'A' then type-abortion
                                            when 'W' then type-warning
-                                           when 'X' then type-exit
                                            when 'S' then type-success
                                            else throw cx_sy_message_illegal_text( ) )
                         i_var1 = sy-msgv1

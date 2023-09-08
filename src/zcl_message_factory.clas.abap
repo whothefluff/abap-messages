@@ -10,7 +10,7 @@ class zcl_message_factory definition
     "! @parameter r_system_message | <p class="shorttext synchronized" lang="EN"></p>
     methods from_system_message
               returning
-                value(r_system_message) type ref to if_t100_dyn_msg.
+                value(r_system_message) type ref to if_abap_behv_message.
 
     "! <p class="shorttext synchronized" lang="EN">Returns a new message from a free text</p>
     "!
@@ -22,7 +22,7 @@ class zcl_message_factory definition
                 i_free_text type string
                 i_type type zcl_message=>valid_type default zcl_message=>type-information
               returning
-                value(r_free_message) type ref to if_t100_dyn_msg.
+                value(r_free_message) type ref to if_abap_behv_message.
 
     "! <p class="shorttext synchronized" lang="EN">Returns a new message from a text symbol</p>
     "! Replaces placeholders &1, &2, &3, and &4 if provided
@@ -43,7 +43,7 @@ class zcl_message_factory definition
                 i_placeholder3 type sy-msgv3 optional
                 i_placeholder4 type sy-msgv4 optional
               returning
-                value(r_text_symbol_message) type ref to if_t100_dyn_msg.
+                value(r_text_symbol_message) type ref to if_abap_behv_message.
 
     "! <p class="shorttext synchronized" lang="EN">Returns a new message from an exception message</p>
     "! The type is whatever the exception has if it implements {@link IF_T100_DYN_MSG}, or error if it doesn't
@@ -55,7 +55,7 @@ class zcl_message_factory definition
               importing
                 i_exception type ref to cx_root
               returning
-                value(r_error_message) type ref to if_t100_dyn_msg
+                value(r_error_message) type ref to if_abap_behv_message
               raising
                 cx_sy_message_illegal_text.
 
@@ -69,7 +69,7 @@ class zcl_message_factory definition
                 i_message type ref to if_t100_message
                 i_new_type type zcl_message=>valid_type optional
               returning
-                value(r_copied_message) type ref to if_t100_dyn_msg.
+                value(r_copied_message) type ref to if_abap_behv_message.
 
 endclass.
 class zcl_message_factory implementation.
@@ -81,10 +81,9 @@ class zcl_message_factory implementation.
                                                 i_type = switch #( sy-msgty
                                                                    when 'E' then zcl_message=>type-error
                                                                    when 'I' then zcl_message=>type-information
-                                                                   when 'A' then zcl_message=>type-abortion
                                                                    when 'W' then zcl_message=>type-warning
-                                                                   when 'X' then zcl_message=>type-exit
-                                                                   when 'S' then zcl_message=>type-success )
+                                                                   when 'S' then zcl_message=>type-success
+                                                                   else throw cx_sy_message_illegal_text( ) )
                                                 i_var1 = sy-msgv1
                                                 i_var2 = sy-msgv2
                                                 i_var3 = sy-msgv3
@@ -121,7 +120,7 @@ class zcl_message_factory implementation.
                                                                                    sub = '&3'
                                                                                    with = i_placeholder3 )
                                                                     sub = '&4'
-                                                                    with = i_placeholder4 ) 
+                                                                    with = i_placeholder4 )
                                              i_type = i_type ).
 
   endmethod.
@@ -130,7 +129,7 @@ class zcl_message_factory implementation.
     cl_message_helper=>set_msg_vars_for_if_t100_msg( cast #( i_exception ) ).
 
     sy-msgty = cond #( when i_exception is instance of if_t100_dyn_msg
-                       then cast if_t100_dyn_msg( i_exception )->msgty 
+                       then cast if_t100_dyn_msg( i_exception )->msgty
                        else 'E' ).
 
     r_error_message = me->from_system_message( ).
