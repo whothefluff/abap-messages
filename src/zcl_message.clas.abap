@@ -45,7 +45,7 @@ class zcl_message definition
 
     "! <p class="shorttext synchronized" lang="EN">Sends message and displays it like a specific type</p>
     "!
-    "! @parameter i_display_like | <p class="shorttext synchronized" lang="EN"></p>
+    "! @parameter i_type | <p class="shorttext synchronized" lang="EN"></p>
     "! @parameter r_self | <p class="shorttext synchronized" lang="EN"></p>
     methods send_like
               importing

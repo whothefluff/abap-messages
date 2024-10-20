@@ -5,12 +5,39 @@
    <VSEOCLASS>
     <CLSNAME>ZCL_MESSAGE</CLSNAME>
     <LANGU>E</LANGU>
-    <DESCRIPT>.</DESCRIPT>
+    <DESCRIPT>Message</DESCRIPT>
     <STATE>1</STATE>
     <CLSCCINCL>X</CLSCCINCL>
     <FIXPT>X</FIXPT>
     <UNICODE>X</UNICODE>
    </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creates a T100 message</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DISPLAY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sends message that displays at the end of the process</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>DISPLAY_IMMEDIATELY</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sends message that displays before continuing the process</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SEND</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sends message</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CMPNAME>SEND_LIKE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Sends message and displays it like a specific type</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
   </asx:values>
  </asx:abap>
 </abapGit>
