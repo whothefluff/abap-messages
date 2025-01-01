@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_MESSAGE</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Message</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+    <WITH_UNIT_TESTS>X</WITH_UNIT_TESTS>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MESSAGE</CLSNAME>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Creates a T100 message</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MESSAGE</CLSNAME>
+     <CMPNAME>CONTENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns this message&apos;s content</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MESSAGE</CLSNAME>
+     <CMPNAME>LONG_TEXT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns this message&apos;s long text, if it exists</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MESSAGE</CLSNAME>
+     <CMPNAME>TYPE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns this message&apos;s type</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_MESSAGE</CLSNAME>
+     <CMPNAME>VARIABLES</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Returns this message&apos;s variables</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+   <DESCRIPTIONS_SUB>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>I_ID</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Message class</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>I_NUMBER</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Message number</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>I_TYPE</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Type</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>I_VAR1</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Variable</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>I_VAR2</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Variable</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>I_VAR3</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Variable</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONSTRUCTOR</CMPNAME>
+     <SCONAME>I_VAR4</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Variable</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>CONTENT</CMPNAME>
+     <SCONAME>R_VAL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Message text</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>LONG_TEXT</CMPNAME>
+     <SCONAME>I_PRESERVING_LINE_BREAKS</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>When false, line breaks are replaced by spaces</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>LONG_TEXT</CMPNAME>
+     <SCONAME>R_VAL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Long text or empty</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>TYPE</CMPNAME>
+     <SCONAME>R_VAL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Message type</DESCRIPT>
+    </SEOSUBCOTX>
+    <SEOSUBCOTX>
+     <CMPNAME>VARIABLES</CMPNAME>
+     <SCONAME>R_VAL</SCONAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Classic message variables</DESCRIPT>
+    </SEOSUBCOTX>
+   </DESCRIPTIONS_SUB>
+  </asx:values>
+ </asx:abap>
+</abapGit>
