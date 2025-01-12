@@ -126,7 +126,7 @@ class zcl_message_factory implementation.
   endmethod.
   method from_exception.
 
-    cl_message_helper=>set_msg_vars_for_if_t100_msg( cast #( i_exception ) ).
+    cl_message_helper=>set_msg_vars_for_if_msg( cast #( i_exception ) ).
 
     sy-msgty = cond #( when i_exception is instance of if_t100_dyn_msg
                        then cast if_t100_dyn_msg( i_exception )->msgty
